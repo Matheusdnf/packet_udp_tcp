@@ -16,7 +16,7 @@ def cabecalhotcp(protocolo):
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           | Número de ACK: {protocolo.ack}                                     |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-          | Offset: protocolo.offset {flag(protocolo.flags)} Janela: {protocolo.window}       |
+          | Offset: {protocolo.dataofs} {flag(protocolo.flags)} Janela: {protocolo.window}       |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           | Checksum: {protocolo.chksum} (?)                              |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+""")
