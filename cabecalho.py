@@ -3,19 +3,34 @@ def cabecalhoudp(protocolo):    print(f"""
        +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
        |        Porta origem:{protocolo.sport}  | Porta destino: {protocolo.dport}     |
         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-        |        Tamanho:{len(protocolo)}        |  {protocolo.chksum}           |
+        |        Tamanho:{protocolo.size}        |  {protocolo.chksum}(?)           |
         +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+""")
 
 def cabecalhotcp(protocolo):
+
     print(f"""
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
           |             Porta origem: {protocolo.sport} | Porta destino: {protocolo.dport}          | 
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-          | Núumero sequência: {protocolo.seq}                            |
+          | Núumero sequência: {protocolo.seq}                                 |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-          | Número de ACK: {protocolo.ack}                                |
+          | Número de ACK: {protocolo.ack}                                     |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-          | Offset: protocolo.offset | | | |A| | |S| | Janela: xxxx       |
+          | Offset: protocolo.offset {flag(protocolo.flags)} Janela: {protocolo.window}       |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-          | Checksum: {protocolo.chksum} (?) |                            |
+          | Checksum: {protocolo.chksum} (?)                              |
           +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+""")
+    
+
+def flag(flag):
+    lista_flags = ["U", "A", "P", "R", "S", "F"] 
+    linha = "|"
+    for f in lista_flags:
+        if f in flag:
+            linha += f + "|"   
+        else:
+            linha += " |"     
+    return linha
+
+
+
